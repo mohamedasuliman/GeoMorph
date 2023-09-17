@@ -7,7 +7,7 @@ email: mohamedabdall78@hotmail.com
 """
 
 '''
-GeoMorph spatial transformer + CRF networks
+GeoMorph spatial transformer + CRF-RNN
 '''
 
 import numpy as np
