@@ -254,10 +254,10 @@ class feature_extraction(nn.Module):
         return feat_x, feat_y
     
         
-class monet_register_coarse(nn.Module):
+class geomorph(nn.Module):
     def __init__(self, dec_num_features, num_neigh, device, data_ico, labels_ico, 
                  control_ico):
-        super(monet_register_coarse, self).__init__()
+        super(geomorph, self).__init__()
         
         
         self.device = device
