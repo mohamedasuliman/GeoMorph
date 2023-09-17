@@ -8,7 +8,7 @@ import numpy as np
 
 import torch_geometric.nn as gnn
 
-from models.GeoMorph_coarse_stn import STN
+from models.GeoMorph_stn import STN
 
 ####################################################################################
 ver_dic = {0:12,1:42,2:162,3:642,4:2562,5:10242,6:40962, 7:163842, 8:655362}
