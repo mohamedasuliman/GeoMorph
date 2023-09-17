@@ -45,6 +45,33 @@ def grad_loss(warps, hex_org, device, reg_fun='l1'):
 
     return warps_gradient  
 
+def normalize_feats(image):
+    
+    num_feats = image.shape[1]
+    clipped_image   = torch.zeros_like(image)
+    normalized_image= torch.zeros_like(image)
+    
+    image_masked= image[torch.sum(torch.abs(image), dim=1) != 0]
+    image_mean  = torch.mean(image_masked, dim=0)
+    image_std   = torch.std(image_masked, dim=0)
+
+    min_thre = (image_mean - (3*image_std ))
+    max_thre = (image_mean + (3*image_std ))
+    
+    for i in range(num_feats):        
+        clipped_image[:,i] = torch.clip(image[:,i], min_thre[i], max_thre[i])      
+        
+    image_masked= clipped_image[torch.sum(torch.abs(image), dim=1) != 0]
+    image_mean  = torch.mean(image_masked, dim=0)
+    image_std   = torch.std(image_masked, dim=0)   
+    
+    for i in range(num_feats):    
+        normalized_image[:,i] = (clipped_image[:,i] - image_mean[i]) / image_std[i] 
+        
+    normalized_image[torch.sum(torch.abs(image), dim=1) == 0] = 0.0
+    
+    return normalized_image
+
 
 def save_gifti(icosphere_array, subject_id, file_to_save): 
        
