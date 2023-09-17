@@ -2,4 +2,4 @@
 
 This repository contains the official PyTorch implementation of the GeoMorph paper
 
-**More Info Coming soon**
+**More Info coming soon**
